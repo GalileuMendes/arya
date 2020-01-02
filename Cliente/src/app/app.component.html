@@ -1,0 +1,35 @@
+<clr-main-container>
+  <clr-header class="header-7">
+    <div class="branding row flex-items-xs-middle flex-items-xs-center">
+      <a routerLink="/" class="nav-link">
+        <clr-icon shape="devices" class="is-inverse is-solid"></clr-icon>
+        <span class="title">EPC Arya</span>
+      </a>
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a class="nav-link" routerLink="devices" routerLinkActive="active">
+        <span class="nav-text">Devices</span>
+      </a>
+      <a class="nav-link" routerLink="objects" routerLinkActive="active">
+        <span class="nav-text">Objects</span>
+      </a>
+      <a class="nav-link" routerLink="sectors" routerLinkActive="active">
+        <span class="nav-text">Sectors</span>
+      </a>
+      <a class="nav-link" routerLink="tags" routerLinkActive="active">
+        <span class="nav-text">Tags</span>
+      </a>
+      <a class="nav-link" routerLink="types" routerLinkActive="active">
+        <span class="nav-text">Types</span>
+      </a>
+      <a class="nav-link" routerLink="epc" routerLinkActive="active">
+        <span class="nav-text">EPC</span>
+      </a>
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</clr-main-container>

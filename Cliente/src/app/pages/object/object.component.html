@@ -1,0 +1,44 @@
+<div class="clr-row">
+  <div class="clr-col">
+    <h1>Objects</h1>
+  </div>
+</div>
+
+<div class="clr-row">
+  <div class="clr-col">
+    <clr-datagrid>
+      <clr-dg-column>ID</clr-dg-column>
+      <clr-dg-column>Identification</clr-dg-column>
+
+      <clr-dg-row *ngFor="let object of objects">
+        <clr-dg-cell>{{ object.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ object.identification }}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>{{ objects.length }} objects</clr-dg-footer>
+    </clr-datagrid>
+  </div>
+  <div class="clr-col">
+    <h2>Object Form</h2>
+    <form clrForm>
+      <clr-input-container>
+        <label>Identification</label>
+        <input
+          type="text"
+          clrInput
+          name="identification"
+          [(ngModel)]="formObject.identification"
+        />
+      </clr-input-container>
+      <br />
+      <button
+        *ngIf="!formObject.id"
+        [clrLoading]="submitBtnState"
+        type="submit"
+        class="btn btn-success-outline"
+        (click)="addObject()"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+</div>

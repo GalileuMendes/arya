@@ -1,0 +1,75 @@
+<div class="clr-row">
+  <div class="clr-col">
+    <h1>Location Log</h1>
+  </div>
+</div>
+
+<div class="clr-row">
+  <div class="clr-col">
+    <h2>Search log</h2>
+    <form clrForm>
+      <clr-select-container>
+        <label>Device</label>
+        <select clrSelect name="device" [(ngModel)]="deviceId">
+          <option *ngFor="let device of devices" [value]="device.id">{{
+            device.name
+          }}</option>
+        </select>
+      </clr-select-container>
+      <clr-date-container>
+        <label>Initial Date</label>
+        <input
+          type="date"
+          clrDate
+          name="initialDate"
+          [(ngModel)]="initialDate"
+        />
+      </clr-date-container>
+      <clr-input-container>
+        <label>Initial Time (HH:mm:ss)</label>
+        <input
+          type="text"
+          clrInput
+          name="initialTime"
+          [(ngModel)]="initialTime"
+        />
+      </clr-input-container>
+      <clr-date-container>
+        <label>Final Date</label>
+        <input type="date" clrDate name="finalDate" [(ngModel)]="finalDate" />
+      </clr-date-container>
+      <clr-input-container>
+        <label>Final Time (HH:mm:ss)</label>
+        <input type="text" clrInput name="finalTime" [(ngModel)]="finalTime" />
+      </clr-input-container>
+      <br />
+      <button
+        [clrLoading]="submitBtnState"
+        type="submit"
+        class="btn btn-success-outline"
+        (click)="submitSearch()"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div class="clr-col">
+    <clr-datagrid *ngIf="locationLog.length > 0">
+      <clr-dg-column>Type</clr-dg-column>
+      <clr-dg-column>Identification</clr-dg-column>
+      <clr-dg-column>Sector</clr-dg-column>
+      <clr-dg-column>Device</clr-dg-column>
+      <clr-dg-column>Pickup Moment</clr-dg-column>
+
+      <clr-dg-row *ngFor="let log of locationLog">
+        <clr-dg-cell>{{ log.epc.type.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ log.epc.objectId.identification }}</clr-dg-cell>
+        <clr-dg-cell>{{ log.epc.sector.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ log.device.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ log.pickupMoment | date: "medium" }}</clr-dg-cell>
+      </clr-dg-row>
+
+      <clr-dg-footer>{{ locationLog.length }} logs</clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>

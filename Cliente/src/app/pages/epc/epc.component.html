@@ -1,0 +1,75 @@
+<div class="clr-row">
+  <div class="clr-col">
+    <h1>Epcs</h1>
+  </div>
+</div>
+
+<div class="clr-row">
+  <div class="clr-col">
+    <clr-datagrid>
+      <clr-dg-column>ID</clr-dg-column>
+      <clr-dg-column>Type</clr-dg-column>
+      <clr-dg-column>Sector</clr-dg-column>
+      <clr-dg-column>Object</clr-dg-column>
+      <clr-dg-column>Tag RFID</clr-dg-column>
+      <clr-dg-column>EPC Arya</clr-dg-column>
+
+      <clr-dg-row *ngFor="let epc of epcs">
+        <clr-dg-cell>{{ epc.id }}</clr-dg-cell>
+        <clr-dg-cell>{{ epc.type.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ epc.sector.name }}</clr-dg-cell>
+        <clr-dg-cell>{{ epc.objectId.identification }}</clr-dg-cell>
+        <clr-dg-cell>{{ epc.tagRFID.identificationTagRFID }}</clr-dg-cell>
+        <clr-dg-cell>{{ epc.epcArya }}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>{{ epcs.length }} epcs</clr-dg-footer>
+    </clr-datagrid>
+  </div>
+  <div class="clr-col">
+    <h2>Epc Form</h2>
+    <form clrForm>
+      <clr-select-container>
+        <label>Type</label>
+        <select clrSelect name="type" [(ngModel)]="epc.type">
+          <option *ngFor="let type of types" [ngValue]="type">{{
+            type.name
+          }}</option>
+        </select>
+      </clr-select-container>
+      <clr-select-container>
+        <label>Sector</label>
+        <select clrSelect name="sector" [(ngModel)]="epc.sector">
+          <option *ngFor="let sector of sectors" [ngValue]="sector">{{
+            sector.name
+          }}</option>
+        </select>
+      </clr-select-container>
+      <clr-select-container>
+        <label>Object</label>
+        <select clrSelect name="object" [(ngModel)]="epc.objectId">
+          <option *ngFor="let object of objects" [ngValue]="object">{{
+            object.identification
+          }}</option>
+        </select>
+      </clr-select-container>
+      <clr-select-container>
+        <label>Tag RFID</label>
+        <select clrSelect name="tag" [(ngModel)]="epc.tagRFID">
+          <option *ngFor="let tag of tags" [ngValue]="tag">{{
+            tag.identificationTagRFID
+          }}</option>
+        </select>
+      </clr-select-container>
+      <br />
+      <button
+        *ngIf="!epc.id"
+        [clrLoading]="submitBtnState"
+        epc="submit"
+        class="btn btn-success-outline"
+        (click)="addEpc()"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+</div>
